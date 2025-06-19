@@ -378,6 +378,185 @@
   }
 
   .chat-window {
+    display: none;
+    position: fixed;
+    bottom: 110px;
+    right: 25px;
+    width: 360px;
+    max-height: 500px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    font-family: sans-serif;
+    z-index: 1000;
+  }
+
+  .chat-header {
+    background-color: #4b6cb7;
+    color: white;
+    padding: 14px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .chat-body {
+    padding: 14px;
+    height: 260px;
+    overflow-y: auto;
+    font-size: 16px;
+  }
+
+  .chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+  }
+
+  .chat-input button {
+    padding: 12px 16px;
+    background-color: #4b6cb7;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .message.bot {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .message.user {
+    background-color: #d1e7ff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    text-align: right;
+  }
+</style>
+
+
+<!-- Chat Toggle Button -->
+<button class="chat-button" onclick="toggleChat()">
+  <img src="Robo.png" alt="Chat Bot" style="width: 60px; height: 60px;" />
+</button>
+
+<!-- Chat Window -->
+<div class="chat-window" id="chatWindow" style="display: none;">
+  <div class="chat-header">Sanchari Mithra</div>
+
+  <div class="chat-body" id="chatBody">
+    <div class="message bot" style="display: flex; gap: 10px; align-items: flex-start;">
+      <img src="Robo.png" alt="Sai Mitra" style="width: 40px; height: 40px; border-radius: 50%;" />
+      <div>
+        🙏 <strong>Hello! I am <span style="color:#007bff;">Sai Mitra</span></strong><br />
+        I’m your friendly digital assistant from <strong>Sri Sathya Sai Sharadaniketanam</strong>.<br />
+        <strong>Ask me anything about our campus – from routine, events, seva to facilities!</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type your question..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<!-- Add This Script -->
+<script>
+  function toggleChat() {
+    const chatWindow = document.getElementById("chatWindow");
+    chatWindow.style.display =
+      chatWindow.style.display === "none" || chatWindow.style.display === ""
+        ? "block"
+        : "none";
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+    if (message) {
+      const chatBody = document.getElementById("chatBody");
+
+      // User message
+      const userMsg = document.createElement("div");
+      userMsg.className = "user-message";
+      userMsg.textContent = message;
+      chatBody.appendChild(userMsg);
+
+      // Bot reply placeholder
+      const botReply = document.createElement("div");
+      botReply.className = "bot-message";
+      botReply.textContent = "🤖 I'm processing your query...";
+      chatBody.appendChild(botReply);
+
+      input.value = "";
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+  }
+</script>
+<!-- Add Some Quick Styling (Optional) -->
+<style>
+<!-- Intro Bubble Above Chat Bot with Picture -->
+<div id="botIntro" style="
+  position: fixed;
+  bottom: 105px;
+  right: 95px;
+  background: #ffffff;
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  max-width: 200px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 999;
+">
+  <img src="Robo.png" alt="Sai Mitra" style="width: 28px; height: 28px; border-radius: 50%;" />
+  <div>
+    <strong style="color:#007bff;">Sai Mitra</strong><br>
+    Your campus guide!
+  </div>
+  <div style="
+    position: absolute;
+    bottom: -10px;
+    right: 25px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #ffffff;
+  "></div>
+</div>
+
+<!-- Fade Out Script -->
+<script>
+  setTimeout(() => {
+    const intro = document.getElementById('botIntro');
+    if (intro) {
+      intro.style.opacity = '0';
+      intro.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => {
+        intro.style.display = 'none';
+      }, 500);
+    }
+  }, 5000);
+</script>
+
+  .chat-window {
     width: 350px;
     height: 500px;
     position: fixed;
@@ -389,7 +568,6 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    z-index: 998;
   }
 
   .chat-header {
@@ -444,101 +622,9 @@
   .bot-message {
     background: #e6f3ff;
   }
-
-  @keyframes fadeOutBubble {
-    0%, 85% { opacity: 1; }
-    100% { opacity: 0; display: none; }
-  }
 </style>
 
-<!-- Chat Toggle Button -->
-<button class="chat-button" onclick="toggleChat()">
-  <img src="Robo.png" alt="Chat Bot" style="width: 60px; height: 60px;" />
-</button>
-
-<!-- Welcome Bubble -->
-<div id="saiMitraBubble" style="
-  position: fixed;
-  bottom: 110px;
-  right: 20px;
-  background-color: #ffffff;
-  border: 2px solid #007bff;
-  border-radius: 16px;
-  padding: 15px;
-  max-width: 350px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  z-index: 9999;
-  animation: fadeOutBubble 5s ease-in-out forwards;
-">
-  <img src="Robo.png" alt="Sai Mitra" style="width: 70px; height: 70px; border-radius: 50%;" />
-  <div style="font-size: 14px; line-height: 1.6;">
-    🙏 <strong>Hello! I am <span style="color:#007bff;">Sai Mitra</span></strong><br>
-    I’m your friendly digital assistant from<br>
-    <strong>Sri Sathya Sai Sharadaniketanam</strong>.<br>
-    Ask me anything about our campus – from routine, events, seva to facilities!
-    <div style="font-size: 24px; margin-top: 5px; text-align:center;">⬇️</div>
-  </div>
-  <audio autoplay>
-    <source src="sai-mitra-welcome.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</div>
-
-<!-- Chat Window -->
-<div class="chat-window" id="chatWindow" style="display: none;">
-  <div class="chat-header">Sanchari Mithra</div>
-
-  <div class="chat-body" id="chatBody">
-    <div class="message bot" style="display: flex; gap: 10px; align-items: flex-start;">
-      <img src="Robo.png" alt="Sai Mitra" style="width: 40px; height: 40px; border-radius: 50%;" />
-      <div>
-        🙏 <strong>Hello! I am <span style="color:#007bff;">Sai Mitra</span></strong><br />
-        I’m your friendly digital assistant from <strong>Sri Sathya Sai Sharadaniketanam</strong>.<br />
-        <strong>Ask me anything about our campus – from routine, events, seva to facilities!</strong>
-      </div>
-    </div>
-  </div>
-
-  <div class="chat-input">
-    <input type="text" id="userInput" placeholder="Type your question..." />
-    <button onclick="sendMessage()">Send</button>
-  </div>
-</div>
-
 <script>
-  function toggleChat() {
-    const chatWindow = document.getElementById("chatWindow");
-    chatWindow.style.display = chatWindow.style.display === "none" || chatWindow.style.display === "" ? "block" : "none";
-  }
-
-  function sendMessage() {
-    const input = document.getElementById("userInput");
-    const message = input.value.trim();
-    if (message) {
-      const chatBody = document.getElementById("chatBody");
-      const userMsg = document.createElement("div");
-      userMsg.className = "user-message";
-      userMsg.textContent = message;
-      chatBody.appendChild(userMsg);
-      const botReply = document.createElement("div");
-      botReply.className = "bot-message";
-      botReply.textContent = "🤖 I'm processing your query...";
-      chatBody.appendChild(botReply);
-      input.value = "";
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-  }
-
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      const bubble = document.getElementById("saiMitraBubble");
-      if (bubble) bubble.style.display = "none";
-    }, 5000);
-  });
-</script>
   function toggleChat() {
     const chatWindow = document.getElementById("chatWindow");
     chatWindow.style.display = chatWindow.style.display === "none" || chatWindow.style.display === "" ? "block" : "none";
@@ -559,18 +645,15 @@
   }
 </script>
 <script>
-  const teacherMap = <script>
   const teacherMap = {
     "lokesh babu": "Social Studies – OBE (8th) & Secondary Arts (9th)",
     "raju": "Principal – OBE Wing & Social Studies – OBE (6th)",
     "prem chand": "Social Studies – OBE (7th) & Secondary Arts (9th)",
     "praveen g": "Science – OBE | Physics – Secondary (10th)",
     "madhu": "Sound Designer Intern",
-    "manju": "Sanskrit-OBE",
     "sanjeev kumar": "Maths – OBE (7th) & Secondary (10th)",
+    "giridhar": "obe warden",
     "kumar": "english – OBE (6th & 8th)",
-    "subramaniam": "english – OBE ",
-    "vidya amma": "english – OBE ",
     "murugesh": "english – Secondary (9th & 10th)",
     "manoj": "Science – OBE (6th & 8th) & Secondary (9th & 10th)",
     "sai prasad": "vice principal(obe)",
@@ -578,13 +661,13 @@
     "nandish": "Chemistry/Biology – Secondary (9th & 10th)",
     "jathin": "Physics – Secondary (9th)",
     "gireesha": "Maths – Secondary (9th)",
-    "babu": "ICH – Secondary Arts/Science & Palaka",
+    "babu": "ICH – Secondary Arts/Science (9th)",
     "venkatesh": "PHYSICAL EDUCATION TEACHER",
     "omsai pradhan": "Music Intern",
     "jeevan sai": "Music Intern",
     "jeevan": "Public Relational Officer",
     "jayaram": "Secretary Mandya Campus",
-    "manu": "ICH – Secondary Arts/Science,Economic & Palaka",
+    "manu": "ICH – Secondary Arts/Science (9th)",
     "yogish": "ICH – Secondary (10th) & Social Studies – Arts (10th)",
     "umakanth": "Economics – Sr. Secondary & Vice Principal",
     "ambarish": "Computer – Secondary",
@@ -598,10 +681,6 @@
     "raghu": "English – Senior Secondary",
     "sadguru": "Founder – Sri Sathya Sai Sharadaniketanam",
     "karthik": "Upa Pradhanapalak Warden",
-    "sai giridhar": "Palaka",
-    "girivardhan vk": "Intern",
-    "mukhul": "Intern",
-    "raj k": "Intern",
     "shrungesh": "First Division Assistant",
     "siddesh": "Second Division Assistant",
     "sai baba": "Seva dal incharge",
@@ -774,17 +853,16 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
 🔹 <strong>Overall Campus Head</strong>: Sri Gaurav M. (Pradhanapalak)<br>📞 <a href="tel:+919380087929">+91-93800 87929</a><br><br>
 🔹 <strong>Assistant Campus Head</strong>: Sri Karthik (Upa Pradhanapalak)<br>📞 <a href="tel:+917022661771">+91-70226 61771</a><br><br>
 🔹 <strong>OBE Section (Open Basic Education)</strong>: Sri Raju (OBE Principal)<br>📞 <a href="tel:+919739595215">+91-97395 95215</a><br><br>
-🔹 <strong>Secondary Education</strong>: Sri Chethan (Secondary In-charge)<br>📞 <a href="tel:+918095253223">+91-80952 53223</a><br><br>
+🔹 <strong>Secondary Education</strong>: Sri Chethan (Secondary In-charge)<br>📞 [Add Phone]<br><br>
 🔹 <strong>Senior Secondary (PUC)</strong>: Sri Harshavardhan (Sr. Secondary In-charge)<br>📞 <a href="tel:+918317396588">+91-83173 96588</a><br><br>
 🔹 <strong>Hostel Management</strong>: Sri Manu (Hostel Warden)<br>📞 <a href="tel:+917022418092">+91-70224 18092</a><br><br>
-🔹 <strong>Library</strong>: Sri Nagendra S.K (Librarian)<br>📞 <a href="tel:+919164859962">91-91648 59962</a><br><br>
-🔹 <strong>Seva Incharge</strong>: Sri Kamma Sathya sai baba  (Seva Incharge)<br>📞 <a href="tel:+917999659408">+91 79996 59408</a><br><br>
+🔹 <strong>Library</strong>: Smt. Shilpa (Librarian)<br>📞 [Add Phone]<br><br>
 🔹 <strong>Sports & Physical Education</strong>: Sri Venktesh (PE Teacher)<br>📞 <a href="tel:+919945975625">+91-99459 75625</a><br><br>
+🔹 <strong>STEM Lab</strong>: Sri Arvind (STEM Coordinator)<br>📞 [Add Phone]<br><br>
 🔹 <strong>Digital Learning & AI Lab</strong>: Sri Suhas (Computer Dept.)<br>📞 <a href="tel:+916361188255">+91-63611 88255</a><br><br>
 🔹 <strong>Value Education & Bhajan</strong>: Sri Girivardhan (Spiritual Coordinator)<br>📞 <a href="tel:+916363670703">+91-63636 70703</a><br><br>
-🔹 <strong>Chemistry Lab</strong>:Nandisha GS (Science Dept.)<br>📞 <a href="tel:+9191648331250">+91-91648 331250</a><br><br>
-🔹 <strong>Maths Lab</strong>: Sanjeev Kumar (Maths Dept.)<br>📞 <a href="tel:+919535565154">+91-95355 65154</a><br><br>
-🔹 <strong>Drama & Culture Club</strong>: Sri Mukhul (Drama Lead)<br>📞 <a href="tel:+916361188255">+91-63611 88255</a><br><br>`
+🔹 <strong>Chemistry Lab</strong>: Sri Ramesh (Science Dept.)<br>📞 [Add Phone]<br><br>
+🔹 <strong>Maths Lab</strong>: Sri Sandeep (Maths Dept.)<br>📞 [Add Phone]<br><br>
 🔹 <strong>Drama & Culture Club</strong>: Sri Mukhul (Drama Lead)<br>📞 <a href="tel:+916361188255">+91-63611 88255</a><br><br>`
 },
 
@@ -796,10 +874,7 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
     { keywords: ["location", "map", "where"], reply: `📍 <strong>Sri Sathya Sai Sharadaniketanam, Mandya</strong>:<br><a href="https://maps.app.goo.gl/Fu45ZsH41VPSurFf9" target="_blank">Google Maps 🗺️</a>` },
     { keywords: ["social", "media", "youtube", "whatsapp", "instagram", "follow", "channel"], reply: `📢 <strong>Connect With Us:</strong><br>🔴 <a href="https://www.youtube.com/channel/UC-p3e19_uTVvONGDPx6dkrQ" target="_blank">YouTube</a><br>💬 <a href="https://whatsapp.com/channel/0029VaiYKuI6GcGDMEtQzg2D" target="_blank">WhatsApp Channel</a><br>📸 <a href="https://www.instagram.com/sharadaniketanam_mdy/" target="_blank">Instagram</a>` },
     { keywords: ["achievements", "awards"], reply: "🏆 Our students have achieved excellence in academics, sports like shuttle badminton 🏸 and kabaddi, and cultural competitions." },
-   {
-  keywords: ["events", "annual day", "functions"],
-  reply: "📅 Month-end Programs, Paravidya Sessions, Daily Bhajans, and Cultural Activities are regularly organized at the campus."
-},
+    { keywords: ["events", "annual day", "functions"], reply: "📅 Annual Day, Veda competitions, Cultural shows, Parent Meets are regularly organized." },
     { keywords: ["value education", "spiritual", "character"], reply: "🕉️ Moral and value education is integrated daily with bhajans, prayers, and service activities." },
     { keywords: ["digital learning", "smart class", "ai", "chatgpt"], reply: "💡 Our students use smart classrooms, computer labs, and AI tools like ChatGPT to build digital skills." },
     { keywords: ["dress code", "uniform", "clothes"], reply: "👕 Students wear white shirt and pants with a scarf. Uniform is provided by the campus." },
@@ -909,6 +984,8 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
     `;
     chatBody.prepend(menuDiv);
   });
+
+
   function autoAsk(keyword) {
     document.getElementById("userInput").value = keyword;
     sendMessage();
