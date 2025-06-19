@@ -361,91 +361,140 @@
     font-size: 0.95rem;
   }
 </style>
-<style>
-  .chat-button {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 999;
-    background-color: #fffdr5;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 70px;
-    height: 70px;
-    font-size: 28px;
-  }
+<head>
+  <meta charset="UTF-8">
+  <title>Sanchari Mithra Chatbot</title>
+  <style>
+    /* Chat Button */
+    .chat-button {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      background-color: #fffdr5;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      width: 70px;
+      height: 70px;
+      font-size: 28px;
+    }
 
-  .chat-window {
-    display: none;
-    position: fixed;
-    bottom: 110px;
-    right: 25px;
-    width: 360px;
-    max-height: 500px;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    font-family: sans-serif;
-    z-index: 1000;
-  }
+    /* Chat Window */
+    .chat-window {
+      display: none;
+      position: fixed;
+      bottom: 110px;
+      right: 25px;
+      width: 360px;
+      max-height: 500px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      font-family: sans-serif;
+      z-index: 1000;
+      flex-direction: column;
+    }
 
-  .chat-header {
-    background-color: #4b6cb7;
-    color: white;
-    padding: 14px;
-    font-size: 18px;
-    text-align: center;
-    font-weight: bold;
-  }
+    .chat-header {
+      background-color: #4b6cb7;
+      color: white;
+      padding: 14px;
+      font-size: 18px;
+      text-align: center;
+      font-weight: bold;
+    }
 
-  .chat-body {
-    padding: 14px;
-    height: 260px;
-    overflow-y: auto;
-    font-size: 16px;
-  }
+    .chat-body {
+      padding: 14px;
+      height: 260px;
+      overflow-y: auto;
+      font-size: 16px;
+      background: #f0f6ff;
+    }
 
-  .chat-input {
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
 
-  .chat-input input {
-    flex: 1;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    outline: none;
-  }
+    .chat-input input {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+    }
 
-  .chat-input button {
-    padding: 12px 16px;
-    background-color: #4b6cb7;
-    color: white;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
+    .chat-input button {
+      padding: 12px 16px;
+      background-color: #4b6cb7;
+      color: white;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
 
-  .message.bot {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-  }
+    .message.bot {
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
 
-  .message.user {
-    background-color: #d1e7ff;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    text-align: right;
-  }
-</style>
+    .message.user {
+      background-color: #d1e7ff;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      text-align: right;
+    }
 
+    /* Bubble Intro */
+    #botIntro {
+      position: fixed;
+      bottom: 105px;
+      right: 95px;
+      background: #ffffff;
+      color: #000;
+      padding: 8px 12px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      max-width: 200px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 999;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    #botIntro::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      right: 25px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 10px solid #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Bubble Intro -->
+<div id="botIntro">
+  <img src="Robo.png" alt="Sai Mitra" style="width: 28px; height: 28px; border-radius: 50%;" />
+  <div>
+    <strong style="color:#007bff;">Sai Mitra</strong><br>
+    Your campus guide!
+  </div>
+</div>
 
 <!-- Chat Toggle Button -->
 <button class="chat-button" onclick="toggleChat()">
@@ -453,7 +502,7 @@
 </button>
 
 <!-- Chat Window -->
-<div class="chat-window" id="chatWindow" style="display: none;">
+<div class="chat-window" id="chatWindow">
   <div class="chat-header">Sanchari Mithra</div>
 
   <div class="chat-body" id="chatBody">
@@ -473,14 +522,11 @@
   </div>
 </div>
 
-<!-- Add This Script -->
+<!-- Script -->
 <script>
   function toggleChat() {
     const chatWindow = document.getElementById("chatWindow");
-    chatWindow.style.display =
-      chatWindow.style.display === "none" || chatWindow.style.display === ""
-        ? "block"
-        : "none";
+    chatWindow.style.display = chatWindow.style.display === "none" || chatWindow.style.display === "" ? "block" : "none";
   }
 
   function sendMessage() {
@@ -489,13 +535,11 @@
     if (message) {
       const chatBody = document.getElementById("chatBody");
 
-      // User message
       const userMsg = document.createElement("div");
       userMsg.className = "user-message";
       userMsg.textContent = message;
       chatBody.appendChild(userMsg);
 
-      // Bot reply placeholder
       const botReply = document.createElement("div");
       botReply.className = "bot-message";
       botReply.textContent = "🤖 I'm processing your query...";
@@ -505,125 +549,16 @@
       chatBody.scrollTop = chatBody.scrollHeight;
     }
   }
-</script>
-<!-- Add Some Quick Styling (Optional) -->
-<style>
-<!-- Intro Bubble Above Chat Bot with Picture -->
-<div id="botIntro" style="
-  position: fixed;
-  bottom: 105px;
-  right: 95px;
-  background: #ffffff;
-  color: #000;
-  padding: 8px 12px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  max-width: 200px;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 999;
-">
-  <img src="Robo.png" alt="Sai Mitra" style="width: 28px; height: 28px; border-radius: 50%;" />
-  <div>
-    <strong style="color:#007bff;">Sai Mitra</strong><br>
-    Your campus guide!
-  </div>
-  <div style="
-    position: absolute;
-    bottom: -10px;
-    right: 25px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 10px solid #ffffff;
-  "></div>
-</div>
 
-<!-- Fade Out Script -->
-<script>
+  // Auto-hide intro bubble after 5 seconds
   setTimeout(() => {
     const intro = document.getElementById('botIntro');
     if (intro) {
       intro.style.opacity = '0';
-      intro.style.transition = 'opacity 0.5s ease';
-      setTimeout(() => {
-        intro.style.display = 'none';
-      }, 500);
+      setTimeout(() => { intro.style.display = 'none'; }, 500);
     }
   }, 5000);
 </script>
-
-  .chat-window {
-    width: 350px;
-    height: 500px;
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .chat-header {
-    background: #007bff;
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  .chat-body {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    background: #f0f6ff;
-  }
-
-  .chat-input {
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
-
-  .chat-input input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    font-size: 14px;
-    outline: none;
-  }
-
-  .chat-input button {
-    padding: 10px 15px;
-    background: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-
-  .user-message, .bot-message {
-    margin: 8px 0;
-    padding: 10px;
-    border-radius: 8px;
-    max-width: 80%;
-  }
-
-  .user-message {
-    background: #dcf8c6;
-    text-align: right;
-    margin-left: auto;
-  }
-
-  .bot-message {
-    background: #e6f3ff;
-  }
-</style>
-
 <script>
   function toggleChat() {
     const chatWindow = document.getElementById("chatWindow");
@@ -853,19 +788,18 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
 🔹 <strong>Overall Campus Head</strong>: Sri Gaurav M. (Pradhanapalak)<br>📞 <a href="tel:+919380087929">+91-93800 87929</a><br><br>
 🔹 <strong>Assistant Campus Head</strong>: Sri Karthik (Upa Pradhanapalak)<br>📞 <a href="tel:+917022661771">+91-70226 61771</a><br><br>
 🔹 <strong>OBE Section (Open Basic Education)</strong>: Sri Raju (OBE Principal)<br>📞 <a href="tel:+919739595215">+91-97395 95215</a><br><br>
-🔹 <strong>Secondary Education</strong>: Sri Chethan (Secondary In-charge)<br>📞 [Add Phone]<br><br>
+🔹 <strong>Secondary Education</strong>: Sri Chethan (Secondary In-charge)<br>📞 <a href="tel:+918095253223">+91-80952 53223</a><br><br>
 🔹 <strong>Senior Secondary (PUC)</strong>: Sri Harshavardhan (Sr. Secondary In-charge)<br>📞 <a href="tel:+918317396588">+91-83173 96588</a><br><br>
 🔹 <strong>Hostel Management</strong>: Sri Manu (Hostel Warden)<br>📞 <a href="tel:+917022418092">+91-70224 18092</a><br><br>
-🔹 <strong>Library</strong>: Smt. Shilpa (Librarian)<br>📞 [Add Phone]<br><br>
+🔹 <strong>Library</strong>: Sri Nagendra S.K (Librarian)<br>📞 <a href="tel:+919164859962">91-91648 59962</a><br><br>
+🔹 <strong>Seva Incharge</strong>: Sri Kamma Sathya sai baba  (Seva Incharge)<br>📞 <a href="tel:+917999659408">+91 79996 59408</a><br><br>
 🔹 <strong>Sports & Physical Education</strong>: Sri Venktesh (PE Teacher)<br>📞 <a href="tel:+919945975625">+91-99459 75625</a><br><br>
-🔹 <strong>STEM Lab</strong>: Sri Arvind (STEM Coordinator)<br>📞 [Add Phone]<br><br>
 🔹 <strong>Digital Learning & AI Lab</strong>: Sri Suhas (Computer Dept.)<br>📞 <a href="tel:+916361188255">+91-63611 88255</a><br><br>
 🔹 <strong>Value Education & Bhajan</strong>: Sri Girivardhan (Spiritual Coordinator)<br>📞 <a href="tel:+916363670703">+91-63636 70703</a><br><br>
-🔹 <strong>Chemistry Lab</strong>: Sri Ramesh (Science Dept.)<br>📞 [Add Phone]<br><br>
-🔹 <strong>Maths Lab</strong>: Sri Sandeep (Maths Dept.)<br>📞 [Add Phone]<br><br>
+🔹 <strong>Chemistry Lab</strong>:Nandisha GS (Science Dept.)<br>📞 <a href="tel:+9191648331250">+91-91648 331250</a><br><br>
+🔹 <strong>Maths Lab</strong>: Sanjeev Kumar (Maths Dept.)<br>📞 <a href="tel:+919535565154">+91-95355 65154</a><br><br>
 🔹 <strong>Drama & Culture Club</strong>: Sri Mukhul (Drama Lead)<br>📞 <a href="tel:+916361188255">+91-63611 88255</a><br><br>`
 },
-
     { keywords: ["education", "nios", "course"], reply: "🎓 At Sri Sathya Sai Sharadaniketanam, education is rooted in 5Cs (Content, Conduct, Character, Competence, Compassion), guided by and Senior Secondary education with a unique blend of Apara Vidya (academics) and Para Vidya (spiritual wisdom).." },
     { keywords: ["admission", "apply", "eligibility"], reply: "📝 Open to rural boys. Entirely free including food, lodging, uniforms & healthcare." },
     { keywords: ["facilities", "hostel", "library", "temple"], reply: "🏫 Facilities: Academic block, Sai Chaya hostel, temples, wellness centre, community centre, playground." },
