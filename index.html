@@ -622,7 +622,19 @@
     "nagendra": "Librarian",
     "ananth kulkarni": "Examination Coordinator"
   };
-
+</script>
+<script>
+  const studentMap = {
+    class_6: [ /* 6th class students */ ],
+    class_7: [ /* 7th class students */ ],
+    class_8: [ /* 8th class students */ ],
+    class_9: [ /* 9th class students */ ],
+    class_10: [ /* 10th class students */ ],
+    class_11: [ /* 11th class students */ ],
+    class_12: [ /* 12th class students */ ]
+  };
+</script>
+<script>
 const QA = [
   {
     keywords: ["founder", "sadguru", "madhusudhan"],
@@ -779,7 +791,6 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
 💡 <strong>Digital Rooms</strong>: First & Second Floor, right from Saraswati Square<br>
 🙏 <strong>Sai Hrudayam Prayer Hall</strong>: Sacred hall in the academic block<br>
 🧑‍🏫 <strong>OBE Principal Office</strong>: First Floor, right from Saraswati Square
-`
 },
 {
   keywords: ["acharya", "staff list", "leaders map"],
@@ -800,7 +811,9 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
 🔹 <strong>Maths Lab</strong>: Sanjeev Kumar (Maths Dept.)<br>📞 <a href="tel:+919535565154">+91-95355 65154</a><br><br>
 🔹 <strong>Drama & Culture Club</strong>: Sri Mukhul (Drama Lead)<br>📞 <a href="tel:+916361188255">+91-63611 88255</a><br><br>`
 },
-    { keywords: ["education", "nios", "course"], reply: "🎓 At Sri Sathya Sai Sharadaniketanam, education is rooted in 5Cs (Content, Conduct, Character, Competence, Compassion), guided by and Senior Secondary education with a unique blend of Apara Vidya (academics) and Para Vidya (spiritual wisdom).." },
+    { keywords: ["education", "nios", "course"], reply: "🎓 Sadguru Sri Madhusudhan Sai guides humanity with simple yet profound values.
+He emphasizes the 5 Cs: Calmness, Contentment, Compassion, Concentration, and Confidence.He inspires us to live with the 5 Ds: Dedication, Discipline, Determination, Discrimination, and Devotion.His teachings remind us to Watch our Words, Actions, and Thoughts – the powerful 3 Ws.
+Together, these values shape a life of purity, purpose, and service to all.},
     { keywords: ["admission", "apply", "eligibility"], reply: "📝 Open to rural boys. Entirely free including food, lodging, uniforms & healthcare." },
     { keywords: ["facilities", "hostel", "library", "temple"], reply: "🏫 Facilities: Academic block, Sai Chaya hostel, temples, wellness centre, community centre, playground." },
     { keywords: ["head", "principal", "staff", "leader"], reply: "👥 Heads: Sadguru (Founder), Sri Gaurav M. (Pradhanapalak), Sri Karthik (Upa Pradhanapalak), Sri Raju (OBE Principal), Sri Chethan (Secondary), Sri Harshavardhan (Sr. Secondary)." },
@@ -810,7 +823,28 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
     { keywords: ["achievements", "awards"], reply: "🏆 Our students have achieved excellence in academics, sports like shuttle badminton 🏸 and kabaddi, and cultural competitions." },
     { keywords: ["events", "annual day", "functions"], reply: "📅 Annual Day, Veda competitions, Cultural shows, Parent Meets are regularly organized." },
     { keywords: ["value education", "spiritual", "character"], reply: "🕉️ Moral and value education is integrated daily with bhajans, prayers, and service activities." },
-    { keywords: ["digital learning", "smart class", "ai", "chatgpt"], reply: "💡 Our students use smart classrooms, computer labs, and AI tools like ChatGPT to build digital skills." },
+    { keywords: ["digital learning", "smart class", "ai", "chatgpt"], reply: <p style="font-family: 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.7; color: #2b2b2b; background: #f0f8ff; padding: 15px 20px; border-left: 5px solid #1e90ff; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.08);">
+  💡 Our students engage in smart classrooms and modern computer labs, where learning is powered by technology. With hands-on access to tools like <strong>ChatGPT</strong>, <strong>Canva</strong>, and <strong>coding platforms</strong>, they explore digital creativity, critical thinking, and AI-based problem solving — preparing them for the future with confidence and skill.
+</p>
+{
+  keywords: ["sadguru", "madhusudhan sai", "5cs", "5ds", "3ws", "values", "teachings"],
+  reply: "🕉️ Sadguru Sri Madhusudhan Sai guides us through the 5 Cs (Calmness, Contentment, Compassion, Concentration, Confidence), 5 Ds (Dedication, Discipline, Determination, Discrimination, Devotion), and 3 Ws (Watch your Words, Actions, and Thoughts) — shaping a life of purpose, purity, and service."
+},
+<div style="padding: 20px; background-color: #f0f8ff; border-radius: 10px; width: 100%; max-width: 500px; margin: auto; font-family: Arial;">
+  <label for="classDropdown" style="font-size: 16px; font-weight: bold;">🎓 Select Class:</label>
+  <select id="classDropdown" style="padding: 8px; font-size: 14px; width: 100%; margin: 10px 0;">
+    <option value="">-- Choose --</option>
+    <option value="class_6">Class 6</option>
+    <option value="class_7">Class 7</option>
+    <option value="class_8">Class 8</option>
+    <option value="class_9">Class 9</option>
+    <option value="class_10">Class 10</option>
+    <option value="class_11">Class 11</option>
+    <option value="class_12">Class 12</option>
+  </select>
+
+  <ul id="studentList" style="list-style: none; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1);"></ul>
+</div>
     { keywords: ["dress code", "uniform", "clothes"], reply: "👕 Students wear white shirt and pants with a scarf. Uniform is provided by the campus." },
     { keywords: ["food", "meals", "lunch", "dinner"], reply: "🍛 Yes, nutritious vegetarian food is served four times a day—breakfast, lunch, snacks, and dinner." },
     { keywords: ["join after 10", "after 10th", "after tenth"], reply: "🎓 Yes, admissions are open for Grade 11 under Humanities stream (PUC)." },
@@ -844,7 +878,6 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
     { keywords: ["stem lab"], reply: "🔧 STEM Lab is on the Second Floor." },
     { keywords: ["sports room"], reply: "🏅 Sports Room is on the Second Floor." },
     { keywords: ["drama room"], reply: "🎭 Drama Room is on the Ground Floor." }
-  ];
 
   function toggleChat() {
     const chatWindow = document.getElementById('chatWindow');
@@ -896,34 +929,90 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
       sendMessage();
     }
   });
+const studentMap = {
+  class_6: ["Akhil Gowda K P", "Ashray Ananda H", "B Sai Mokshith"],
+  class_7: ["Chiranth Gowda", "Gagan M. S", "Manish B"],
+  class_8: ["Chetan K S", "Chiranth Gowda", "Diganth"],
+  class_9: ["Barath Ramachandra", "Gowtham", "Mahesh A"],
+  class_10: ["Akash H M", "Basavakiran A Patil", "Dawood Ibrahim I"],
+  class_11: ["ABHISHEK GOWDA", "CHINMAY S B", "GANESH GOPYANAIK"],
+  class_12: ["APPU M K", "ADITYA SURESH NAIK", "AMITH"]
+};
 
-  window.addEventListener("load", () => {
-    const chatBody = document.getElementById('chatBody');
-    const menuDiv = document.createElement('div');
-    menuDiv.className = 'menu-buttons';
-    menuDiv.innerHTML = `
- <strong>📌 Quick Menu:</strong><br>
-<button onclick="autoAsk('founder')">Founder</button>
-<button onclick="autoAsk('routine')">Routine</button>
-<button onclick="autoAsk('facilities')">Facilities</button>
-<button onclick="autoAsk('admission')">Admission</button>
-<button onclick="autoAsk('contact')">Contact</button>
-<button onclick="autoAsk('sanchari mithra')">sanchari mithra</button>
-<button onclick="autoAsk('events')">Events</button>
-<button onclick="autoAsk('value education')">Values</button>
-<button onclick="autoAsk('digital learning')">Digital</button>
-<button onclick="autoAsk('academic block')">Academic Block</button> <!-- ✅ NEW BUTTON -->
-<button onclick="autoAsk('acharya')">Acharya List</button> <!-- ✅ NEW BUTTON -->
-<hr>
-    `;
-    chatBody.prepend(menuDiv);
-  });
+// Create dropdown
+const dropdown = document.createElement("select");
+dropdown.id = "classDropdown";
+dropdown.style.padding = "10px";
+dropdown.style.marginBottom = "20px";
+dropdown.style.fontSize = "16px";
 
+// Add default option
+const defaultOption = document.createElement("option");
+defaultOption.text = "-- Select Class --";
+defaultOption.value = "";
+dropdown.appendChild(defaultOption);
 
-  function autoAsk(keyword) {
-    document.getElementById("userInput").value = keyword;
-    sendMessage();
+// Add class options
+Object.keys(studentMap).forEach(classKey => {
+  const option = document.createElement("option");
+  option.value = classKey;
+  option.text = classKey.replace("class_", "Class ");
+  dropdown.appendChild(option);
+});
+
+// Create student list container
+const listContainer = document.createElement("ul");
+listContainer.id = "studentList";
+listContainer.style.listStyle = "none";
+listContainer.style.background = "#fff";
+listContainer.style.padding = "20px";
+listContainer.style.borderRadius = "8px";
+listContainer.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
+listContainer.style.fontSize = "16px";
+
+// Append to body
+document.body.appendChild(dropdown);
+document.body.appendChild(listContainer);
+
+// Handle dropdown change
+dropdown.addEventListener("change", function () {
+  const selectedClass = dropdown.value;
+  listContainer.innerHTML = "";
+
+  if (studentMap[selectedClass]) {
+    studentMap[selectedClass].forEach(name => {
+      const li = document.createElement("li");
+      li.textContent = name;
+      li.style.padding = "5px 0";
+      listContainer.appendChild(li);
+    });
   }
+});
+<!-- 📌 SINGLE COMBINED QUICK MENU BLOCK -->
+<script>
+window.addEventListener("load", () => {
+  const chatBody = document.getElementById('chatBody');
+  const menuDiv = document.createElement('div');
+  menuDiv.className = 'menu-buttons';
+
+  menuDiv.innerHTML = `
+    <strong>📌 Quick Menu:</strong><br><br>
+    <button onclick="autoAsk('founder')">Founder</button>
+    <button onclick="autoAsk('routine')">Routine</button>
+    <button onclick="autoAsk('facilities')">Facilities</button>
+    <button onclick="autoAsk('admission')">Admission</button>
+    <button onclick="autoAsk('contact')">Contact</button>
+    <button onclick="autoAsk('sanchari mithra')">Sanchari Mithra</button>
+    <button onclick="autoAsk('events')">Events</button>
+    <button onclick="autoAsk('digital learning')">Digital</button>
+    <button onclick="autoAsk('academic block')">Academic Block</button>
+    <button onclick="autoAsk('acharya')">Acharya List</button>
+    <hr>
+  `;
+
+  chatBody.prepend(menuDiv);
+});
 </script>
+</style>
 </body>
 </html>
