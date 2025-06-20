@@ -361,91 +361,34 @@
     font-size: 0.95rem;
   }
 </style>
-<style>
-  .chat-button {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 999;
-    background-color: #fffdr5;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 70px;
-    height: 70px;
-    font-size: 28px;
-  }
+<!-- Greeting Message -->
+<div id="saiMitraGreeting" style="
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  background-color: #fff9db;
+  color: #333;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  max-width: 280px;
+  z-index: 9999;
+  transition: opacity 1s ease-out;
+">
+  <strong>🙏 Hello! I am Sai Mitra</strong><br>
+  I’m your friendly digital assistant from Sri Sathya Sai Sharadaniketanam.<br>
+  Ask me anything about our campus – from routine, events, seva to facilities!
+</div>
 
-  .chat-window {
-    display: none;
-    position: fixed;
-    bottom: 110px;
-    right: 25px;
-    width: 360px;
-    max-height: 500px;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    font-family: sans-serif;
-    z-index: 1000;
-  }
-
-  .chat-header {
-    background-color: #4b6cb7;
-    color: white;
-    padding: 14px;
-    font-size: 18px;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  .chat-body {
-    padding: 14px;
-    height: 260px;
-    overflow-y: auto;
-    font-size: 16px;
-  }
-
-  .chat-input {
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
-
-  .chat-input input {
-    flex: 1;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    outline: none;
-  }
-
-  .chat-input button {
-    padding: 12px 16px;
-    background-color: #4b6cb7;
-    color: white;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-
-  .message.bot {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-  }
-
-  .message.user {
-    background-color: #d1e7ff;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    text-align: right;
-  }
-</style>
-
+<script>
+  setTimeout(() => {
+    const greeting = document.getElementById("saiMitraGreeting");
+    greeting.style.opacity = "0";
+    setTimeout(() => greeting.style.display = "none", 1000);
+  }, 5000);
+</script>
 
 <!-- Chat Toggle Button -->
 <button class="chat-button" onclick="toggleChat()">
@@ -455,7 +398,6 @@
 <!-- Chat Window -->
 <div class="chat-window" id="chatWindow" style="display: none;">
   <div class="chat-header">Sanchari Mithra</div>
-
   <div class="chat-body" id="chatBody">
     <div class="message bot" style="display: flex; gap: 10px; align-items: flex-start;">
       <img src="Robo.png" alt="Sai Mitra" style="width: 40px; height: 40px; border-radius: 50%;" />
@@ -466,48 +408,29 @@
       </div>
     </div>
   </div>
-
   <div class="chat-input">
     <input type="text" id="userInput" placeholder="Type your question..." />
     <button onclick="sendMessage()">Send</button>
   </div>
 </div>
 
-<!-- Add This Script -->
-<script>
-  function toggleChat() {
-    const chatWindow = document.getElementById("chatWindow");
-    chatWindow.style.display =
-      chatWindow.style.display === "none" || chatWindow.style.display === ""
-        ? "block"
-        : "none";
-  }
-
-  function sendMessage() {
-    const input = document.getElementById("userInput");
-    const message = input.value.trim();
-    if (message) {
-      const chatBody = document.getElementById("chatBody");
-
-      // User message
-      const userMsg = document.createElement("div");
-      userMsg.className = "user-message";
-      userMsg.textContent = message;
-      chatBody.appendChild(userMsg);
-
-      // Bot reply placeholder
-      const botReply = document.createElement("div");
-      botReply.className = "bot-message";
-      botReply.textContent = "🤖 I'm processing your query...";
-      chatBody.appendChild(botReply);
-
-      input.value = "";
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-  }
-</script>
-<!-- Add Some Quick Styling (Optional) -->
+<!-- Styles -->
 <style>
+  .chat-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+  }
+
   .chat-window {
     width: 350px;
     height: 500px;
@@ -520,6 +443,8 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    z-index: 1000;
+    font-family: 'Segoe UI', sans-serif;
   }
 
   .chat-header {
@@ -535,6 +460,7 @@
     padding: 10px;
     overflow-y: auto;
     background: #f0f6ff;
+    font-size: 14px;
   }
 
   .chat-input {
@@ -558,27 +484,32 @@
     cursor: pointer;
   }
 
-  .user-message, .bot-message {
+  .message.bot, .message.user {
     margin: 8px 0;
     padding: 10px;
     border-radius: 8px;
     max-width: 80%;
   }
 
-  .user-message {
-    background: #dcf8c6;
+  .message.bot {
+    background-color: #e6f3ff;
+  }
+
+  .message.user {
+    background-color: #dcf8c6;
     text-align: right;
     margin-left: auto;
   }
-
-  .bot-message {
-    background: #e6f3ff;
-  }
 </style>
+
+<!-- Script Logic -->
 <script>
   function toggleChat() {
     const chatWindow = document.getElementById("chatWindow");
-    chatWindow.style.display = chatWindow.style.display === "none" || chatWindow.style.display === "" ? "block" : "none";
+    chatWindow.style.display =
+      chatWindow.style.display === "none" || chatWindow.style.display === ""
+        ? "block"
+        : "none";
   }
 
   function sendMessage() {
@@ -586,10 +517,19 @@
     const message = input.value.trim();
     if (message) {
       const chatBody = document.getElementById("chatBody");
+
+      // User message
       const userMsg = document.createElement("div");
       userMsg.className = "message user";
       userMsg.textContent = message;
       chatBody.appendChild(userMsg);
+
+      // Bot reply (placeholder)
+      const botMsg = document.createElement("div");
+      botMsg.className = "message bot";
+      botMsg.textContent = "🤖 I'm processing your query...";
+      chatBody.appendChild(botMsg);
+
       input.value = "";
       chatBody.scrollTop = chatBody.scrollHeight;
     }
