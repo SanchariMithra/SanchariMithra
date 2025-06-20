@@ -361,140 +361,91 @@
     font-size: 0.95rem;
   }
 </style>
-<head>
-  <meta charset="UTF-8">
-  <title>Sanchari Mithra Chatbot</title>
-  <style>
-    /* Chat Button */
-    .chat-button {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 999;
-      background-color: #fffdr5;
-      border: none;
-      cursor: pointer;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      width: 70px;
-      height: 70px;
-      font-size: 28px;
-    }
+<style>
+  .chat-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+    background-color: #fffdr5;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+  }
 
-    /* Chat Window */
-    .chat-window {
-      display: none;
-      position: fixed;
-      bottom: 110px;
-      right: 25px;
-      width: 360px;
-      max-height: 500px;
-      background-color: #fff;
-      border-radius: 15px;
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-      font-family: sans-serif;
-      z-index: 1000;
-      flex-direction: column;
-    }
+  .chat-window {
+    display: none;
+    position: fixed;
+    bottom: 110px;
+    right: 25px;
+    width: 360px;
+    max-height: 500px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    font-family: sans-serif;
+    z-index: 1000;
+  }
 
-    .chat-header {
-      background-color: #4b6cb7;
-      color: white;
-      padding: 14px;
-      font-size: 18px;
-      text-align: center;
-      font-weight: bold;
-    }
+  .chat-header {
+    background-color: #4b6cb7;
+    color: white;
+    padding: 14px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+  }
 
-    .chat-body {
-      padding: 14px;
-      height: 260px;
-      overflow-y: auto;
-      font-size: 16px;
-      background: #f0f6ff;
-    }
+  .chat-body {
+    padding: 14px;
+    height: 260px;
+    overflow-y: auto;
+    font-size: 16px;
+  }
 
-    .chat-input {
-      display: flex;
-      border-top: 1px solid #ccc;
-    }
+  .chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
 
-    .chat-input input {
-      flex: 1;
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      outline: none;
-    }
+  .chat-input input {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+  }
 
-    .chat-input button {
-      padding: 12px 16px;
-      background-color: #4b6cb7;
-      color: white;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-    }
+  .chat-input button {
+    padding: 12px 16px;
+    background-color: #4b6cb7;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
 
-    .message.bot {
-      background-color: #f1f1f1;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-    }
+  .message.bot {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
 
-    .message.user {
-      background-color: #d1e7ff;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      text-align: right;
-    }
+  .message.user {
+    background-color: #d1e7ff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    text-align: right;
+  }
+</style>
 
-    /* Bubble Intro */
-    #botIntro {
-      position: fixed;
-      bottom: 105px;
-      right: 95px;
-      background: #ffffff;
-      color: #000;
-      padding: 8px 12px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      max-width: 200px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 999;
-      opacity: 1;
-      transition: opacity 0.5s ease;
-    }
-
-    #botIntro::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      right: 25px;
-      width: 0;
-      height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 10px solid #ffffff;
-    }
-  </style>
-</head>
-<body>
-
-<!-- Bubble Intro -->
-<div id="botIntro">
-  <img src="Robo.png" alt="Sai Mitra" style="width: 28px; height: 28px; border-radius: 50%;" />
-  <div>
-    <strong style="color:#007bff;">Sai Mitra</strong><br>
-    Your campus guide!
-  </div>
-</div>
 
 <!-- Chat Toggle Button -->
 <button class="chat-button" onclick="toggleChat()">
@@ -502,7 +453,7 @@
 </button>
 
 <!-- Chat Window -->
-<div class="chat-window" id="chatWindow">
+<div class="chat-window" id="chatWindow" style="display: none;">
   <div class="chat-header">Sanchari Mithra</div>
 
   <div class="chat-body" id="chatBody">
@@ -522,11 +473,14 @@
   </div>
 </div>
 
-<!-- Script -->
+<!-- Add This Script -->
 <script>
   function toggleChat() {
     const chatWindow = document.getElementById("chatWindow");
-    chatWindow.style.display = chatWindow.style.display === "none" || chatWindow.style.display === "" ? "block" : "none";
+    chatWindow.style.display =
+      chatWindow.style.display === "none" || chatWindow.style.display === ""
+        ? "block"
+        : "none";
   }
 
   function sendMessage() {
@@ -535,11 +489,13 @@
     if (message) {
       const chatBody = document.getElementById("chatBody");
 
+      // User message
       const userMsg = document.createElement("div");
       userMsg.className = "user-message";
       userMsg.textContent = message;
       chatBody.appendChild(userMsg);
 
+      // Bot reply placeholder
       const botReply = document.createElement("div");
       botReply.className = "bot-message";
       botReply.textContent = "🤖 I'm processing your query...";
@@ -549,16 +505,76 @@
       chatBody.scrollTop = chatBody.scrollHeight;
     }
   }
-
-  // Auto-hide intro bubble after 5 seconds
-  setTimeout(() => {
-    const intro = document.getElementById('botIntro');
-    if (intro) {
-      intro.style.opacity = '0';
-      setTimeout(() => { intro.style.display = 'none'; }, 500);
-    }
-  }, 5000);
 </script>
+<!-- Add Some Quick Styling (Optional) -->
+<style>
+  .chat-window {
+    width: 350px;
+    height: 500px;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-header {
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .chat-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f0f6ff;
+  }
+
+  .chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .chat-input button {
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .user-message, .bot-message {
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+  }
+
+  .user-message {
+    background: #dcf8c6;
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .bot-message {
+    background: #e6f3ff;
+  }
+</style>
 <script>
   function toggleChat() {
     const chatWindow = document.getElementById("chatWindow");
@@ -580,61 +596,56 @@
   }
 </script>
 <script>
-  const teacherMap = {
-    "lokesh babu": "Social Studies – OBE (8th) & Secondary Arts (9th)",
-    "raju": "Principal – OBE Wing & Social Studies – OBE (6th)",
-    "prem chand": "Social Studies – OBE (7th) & Secondary Arts (9th)",
-    "praveen g": "Science – OBE | Physics – Secondary (10th)",
-    "madhu": "Sound Designer Intern",
-    "sanjeev kumar": "Maths – OBE (7th) & Secondary (10th)",
-    "giridhar": "obe warden",
-    "kumar": "english – OBE (6th & 8th)",
-    "murugesh": "english – Secondary (9th & 10th)",
-    "manoj": "Science – OBE (6th & 8th) & Secondary (9th & 10th)",
-    "sai prasad": "vice principal(obe)",
-    "vasumathi": "Computer – OBE",
-    "nandish": "Chemistry/Biology – Secondary (9th & 10th)",
-    "jathin": "Physics – Secondary (9th)",
-    "gireesha": "Maths – Secondary (9th)",
-    "babu": "ICH – Secondary Arts/Science (9th)",
-    "venkatesh": "PHYSICAL EDUCATION TEACHER",
-    "omsai pradhan": "Music Intern",
-    "jeevan sai": "Music Intern",
-    "jeevan": "Public Relational Officer",
-    "jayaram": "Secretary Mandya Campus",
-    "manu": "ICH – Secondary Arts/Science (9th)",
-    "yogish": "ICH – Secondary (10th) & Social Studies – Arts (10th)",
-    "umakanth": "Economics – Sr. Secondary & Vice Principal",
-    "ambarish": "Computer – Secondary",
-    "chethan": "Head – Secondary Wing & Economics – Secondary (10th)",
-    "balakrishna": "Economics – Secondary (9th & 10th)",
-    "yogisha": "Social Studies – Secondary Arts (10th)",
-    "harshavardhan": "Head – Senior Secondary Wing & Economics – Senior Secondary",
-    "gangappa": "History – Senior Secondary",
-    "suhas": "Lecturer of Computer Science – Senior Secondary",
-    "sangannagowda": "Sanskrit Acharya – Senior Secondary",
-    "raghu": "English – Senior Secondary",
-    "sadguru": "Founder – Sri Sathya Sai Sharadaniketanam",
-    "karthik": "Upa Pradhanapalak Warden",
-    "shrungesh": "First Division Assistant",
-    "siddesh": "Second Division Assistant",
-    "sai baba": "Seva dal incharge",
-    "nagendra": "Librarian",
-    "ananth kulkarni": "Examination Coordinator"
-  };
-</script>
-<script>
-  const studentMap = {
-    class_6: [ /* 6th class students */ ],
-    class_7: [ /* 7th class students */ ],
-    class_8: [ /* 8th class students */ ],
-    class_9: [ /* 9th class students */ ],
-    class_10: [ /* 10th class students */ ],
-    class_11: [ /* 11th class students */ ],
-    class_12: [ /* 12th class students */ ]
-  };
-</script>
-<script>
+const teacherMap = {
+  "lokesh babu": "Sri Lokesh Babu – Teacher: Social Studies – OBE (8th) & Secondary Arts (9th)",
+  "raju": "Sri Raju – Headmaster: OBE Wing & Teacher: Social Studies – OBE (6th)",
+  "prem chand": "Sri Prem Chand – Teacher: Social Studies – OBE (7th) & Secondary Arts (9th)",
+  "praveen g": "Sri Praveen G – Teacher: Science – OBE & Physics – Secondary (10th)",
+  "madhu": "Sri Madhu – Intern: Sound Design",
+  "manju": "Sri Manju – Teacher: Sanskrit – OBE",
+  "sanjeev kumar": "Sri Sanjeev Kumar – Teacher: Mathematics – OBE (7th) & Secondary (10th)",
+  "kumar": "Sri Kumar – Teacher: English – OBE (6th & 8th)",
+  "subramaniam": "Sri Subramaniam – Teacher: English – OBE",
+  "vidya amma": "Smt. Vidya Amma – Teacher: English – OBE",
+  "murugesh": "Sri Murugesh – Teacher: English – Secondary (9th & 10th)",
+  "manoj": "Sri Manoj – Teacher: Science – OBE (6th & 8th) & Secondary (9th & 10th)",
+  "sai prasad": "Sri Sai Prasad – Vice Principal: OBE Wing",
+  "vasumathi": "Smt. Vasumathi – Teacher: Computer – OBE",
+  "nandish": "Sri Nandish – Teacher: Chemistry/Biology – Secondary (9th & 10th)",
+  "jathin": "Sri Jathin – Intern & Teacher: Physics – Secondary (9th)",
+  "leela": "Smt. Leela – Teacher: Mathematics – OBE",
+  "babu": "Sri Babu – Teacher: ICH – Secondary Arts/Science & Palaka (Secondary)",
+  "venkatesh": "Sri Venkatesh – Teacher: Physical Education",
+  "omsai pradhan": "Sri Omsai Pradhan – Intern: Music",
+  "jeevan sai": "Sri Jeevan Sai – Intern: Music",
+  "jeevan": "Sri Jeevan – Officer: Public Relations",
+  "jayaram": "Sri Jayaram – Secretary: Mandya Campus",
+  "manu": "Sri Manu – Teacher: ICH – Secondary Arts/Science, Economics & Palaka (Secondary)",
+  "yogish": "Sri Yogish – Teacher: ICH – Secondary (10th) & Social Studies – Arts (10th)",
+  "umakanth": "Sri Umakanth – Vice Principal & Lecturer: Economics – Senior Secondary",
+  "ambarish": "Sri Ambarish – Teacher: Computer – Secondary",
+  "chethan": "Sri Chethan – Headmaster: Secondary Wing & Teacher: Economics – Secondary (10th)",
+  "balakrishna": "Sri Balakrishna – Teacher: Economics – Secondary (9th & 10th)",
+  "yogesh": "Sri Yogesh – Teacher: Social Studies – Secondary Arts (10th)",
+  "harshavardhan": "Sri Harshavardhan – Academic In-charge: Senior Secondary Wing & Lecturer: Economics – Senior Secondary",
+  "gangappa": "Sri Gangappa – Lecturer: History – Senior Secondary",
+  "suhas": "Sri Suhas K C – Lecturer: Computer Science – Senior Secondary",
+  "sangannagowda": "Sri Sangannagowda – Acharya: Sanskrit – Senior Secondary",
+  "raghu": "Sri Raghu – Lecturer: English – Senior Secondary",
+  "sadguru": "Sadguru Sri Madhusudhan Sai – Founder: Sri Sathya Sai Sharadaniketanam",
+  "karthik": "Sri Karthik – Upa Pradhanapalak: Warden (Senior Secondary)",
+  "sai giridhar": "Sri Sai Giridhar – Palaka: Student Care (OBE)",
+  "girivardhan vk": "Sri Girivardhan V K – Intern",
+  "mukhul": "Sri Mukhul – Intern",
+  "raj k": "Sri Raj K – Intern",
+  "shrungesh": "Sri Shrungesh – Accountant: Finance Department",
+  "siddesh": "Sri Siddesh – Assistant Accountant: Finance Department",
+  "sai baba": "Sri Sai Baba – In-charge: Seva Dal",
+  "nagendra": "Sri Nagendra – Librarian: Library Department",
+  "ananth kulkarni": "Sri Ananth Kulkarni – Coordinator: NIOS & Examinations"
+};
+
+
 const QA = [
   {
     keywords: ["founder", "sadguru", "madhusudhan"],
@@ -791,6 +802,7 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
 💡 <strong>Digital Rooms</strong>: First & Second Floor, right from Saraswati Square<br>
 🙏 <strong>Sai Hrudayam Prayer Hall</strong>: Sacred hall in the academic block<br>
 🧑‍🏫 <strong>OBE Principal Office</strong>: First Floor, right from Saraswati Square
+`
 },
 {
   keywords: ["acharya", "staff list", "leaders map"],
@@ -811,11 +823,311 @@ You can ask me anything about hostel life, temple, classes, seva, or Swami’s m
 🔹 <strong>Maths Lab</strong>: Sanjeev Kumar (Maths Dept.)<br>📞 <a href="tel:+919535565154">+91-95355 65154</a><br><br>
 🔹 <strong>Drama & Culture Club</strong>: Sri Mukhul (Drama Lead)<br>📞 <a href="tel:+916361188255">+91-63611 88255</a><br><br>`
 },
-    { keywords: ["education", "nios", "course"], reply: "🎓 Sadguru Sri Madhusudhan Sai guides humanity with simple yet profound values.
-He emphasizes the 5 Cs: Calmness, Contentment, Compassion, Concentration, and Confidence.He inspires us to live with the 5 Ds: Dedication, Discipline, Determination, Discrimination, and Devotion.His teachings remind us to Watch our Words, Actions, and Thoughts – the powerful 3 Ws.
-Together, these values shape a life of purity, purpose, and service to all.},
+
+    { keywords: ["education", "nios", "course"], reply: "🎓 At Sri Sathya Sai Sharadaniketanam, education is rooted in 5Cs (Content, Conduct, Character, Competence, Compassion), guided by and Senior Secondary education with a unique blend of Apara Vidya (academics) and Para Vidya (spiritual wisdom).." },
     { keywords: ["admission", "apply", "eligibility"], reply: "📝 Open to rural boys. Entirely free including food, lodging, uniforms & healthcare." },
     { keywords: ["facilities", "hostel", "library", "temple"], reply: "🏫 Facilities: Academic block, Sai Chaya hostel, temples, wellness centre, community centre, playground." },
+{
+  keywords: ["6th class", "class 6 students", "students of 6", "6th class student list"],
+  reply: `
+📘 <strong>Class 6 – Student List:</strong><br><br>
+1. Akhil Gowda K P<br>
+2. Ashray Ananda H<br>
+3. B Sai Mokshith<br>
+4. Balaji V<br>
+5. Charvvik Chovdary B<br>
+6. Dandu Karthik Reddy<br>
+7. Dhruv Pachouri<br>
+8. Dushyanth Gowda R<br>
+9. Hamshith Gowda G H<br>
+10. Jnanavardhan H A<br>
+11. Mithil Yadav R C<br>
+12. Navatej B<br>
+13. Rohan Krishna S K<br>
+14. Rohit C Patil<br>
+15. Sahas Gowda T S<br>
+16. Shravan Tejas M
+  `
+},
+{
+  keywords: ["7th class", "class 7 students", "students of 7", "7th class student list"],
+  reply: `
+📘 <strong>Class 7 – Student List:</strong><br><br>
+1. Chiranth Gowda<br>
+2. Gagan M. S<br>
+3. Manish B<br>
+4. Meganandh. A<br>
+5. Mohith S<br>
+6. Ranjan Deep<br>
+7. Ravishankar M S<br>
+8. Sai Subramanya<br>
+9. Samarth A Gowda<br>
+10. Sujan Gowda M, B<br>
+11. Sumanth M<br>
+12. Vinish Gowda
+  `
+},
+{
+  keywords: ["8th class", "class 8 students", "students of 8", "8th class student list"],
+  reply: `
+📘 <strong>Class 8 – Student List:</strong><br><br>
+1. Chetan K S<br>
+2. Chiranth Gowda<br>
+3. Diganth<br>
+4. Hemanth K P<br>
+5. Kushal Reddy<br>
+6. Litesh B A<br>
+7. Mahesh<br>
+8. R Chandramouli<br>
+9. Shreyas S<br>
+10. Ullas Gowda M Y<br>
+11. Yashas
+  `
+},
+{
+  keywords: ["9th class", "class 9 students", "students of 9", "9th class student list"],
+  reply: `
+📘 <strong>Class 9 – Student List:</strong><br><br>
+1. Barath Ramachandra Hoskatta<br>
+2. Gowtham<br>
+3. Mahesh A<br>
+4. Manjunath Shekhar Hosagouda<br>
+5. Naitik Naresh Hulaswar<br>
+6. Nithish V<br>
+7. Prateek M<br>
+8. Samarth Fakirappa Hosaganiger<br>
+9. Shamanth Gowda D.S<br>
+10. Siddanth<br>
+11. SriKanth<br>
+12. Sudharshan<br>
+13. Vilas P<br>
+14. Bammu Ramu Edage<br>
+15. Harshith T<br>
+16. Ravichandra V<br>
+17. Sohan B.P<br>
+18. Sudeep<br>
+19. Sumanth<br>
+20. Surya S<br>
+21. Udith Ramesh Bhute<br>
+22. Vedant Namadev Pedanekar<br>
+23. Vedant Nischal<br>
+24. Vijay Kumar<br>
+25. Vikas H<br>
+26. Vishnu Prasad
+  `
+},
+{
+  keywords: ["10th class students", "class 10 students", "students of 10", "10th class student list"],
+  reply: `
+📘 <strong>Class 10 – Student List:</strong><br><br>
+1. Akash H M<br>
+2. Basavakiran A Patil<br>
+3. Dawood Ibrahim I<br>
+4. Durgaprasad<br>
+5. G K Manjunath<br>
+6. G Santosh Kumar<br>
+7. Ganesha S<br>
+8. Gurupadeshvar<br>
+9. Jayaprakash Kumar B<br>
+10. Madan T P<br>
+11. Mailari G<br>
+12. Manjunath V<br>
+13. Mohith Gowda M D<br>
+14. Muhurth K N<br>
+15. Pavan Kumar G<br>
+16. Pranav Vinod Mudhole<br>
+17. Punith<br>
+18. Rithesh G Suresh<br>
+19. Shivakumar V<br>
+20. Shridhar Neelagund<br>
+21. Shrikanth U<br>
+22. V Sai Paranthak<br>
+23. Veeresh S Aiholi<br>
+24. Vijay M<br>
+25. Vinay C<br>
+26. Yashwanth S<br>
+27. Arjun P<br>
+28. Amar H S<br>
+29. Aniketh Sainath Methri<br>
+30. Arnav Navin Shah<br>
+31. Bhuvan M Angadi<br>
+32. C Bharatha<br>
+33. D Prakyath<br>
+34. G L Vinanth Gowda<br>
+35. Kishor H C<br>
+36. Krishnegowda M H<br>
+37. Latik R Patel<br>
+38. Nithin C<br>
+39. Pradyumna A<br>
+40. Prajwal N B<br>
+41. Rakesh S<br>
+42. Shashank M<br>
+43. Tejas Gowda M N<br>
+44. Varshith B M<br>
+45. Vijay Kumar Gowda Sunkad<br>
+46. Yashas V<br>
+47. Yashwanth Kadiyala
+  `
+},
+{
+  keywords: ["11th class students", "class 11 students", "students of 11", "11th class student list"],
+  reply: `
+📘 <strong>Class 11 – Student List:</strong><br><br>
+1. ABHISHEK GOWDA<br>
+2. CHINMAY S B<br>
+3. GANESH GOPYANAIK LAMANI<br>
+4. JEEVAN B<br>
+5. K M NAVANEETH SHARMA<br>
+6. PRATEEK KESHAV KHAMBE<br>
+7. PREM KUMAR B C<br>
+8. SANDEEP SUBHAS PATIL<br>
+9. SHREEGURU R S<br>
+10. SUJAYA LAKSHMAN NAIK<br>
+11. THARUN S<br>
+12. PRAMOD<br>
+13. PRASHANTAKUMAR PRABHULING YALDE<br>
+14. ROHIT RAVUTAPPA MADAR<br>
+15. SHANKAR GURANNA GULED<br>
+16. SUNILKUMAR<br>
+17. AKASH G<br>
+18. AYUSH HARISH ANKOLEKAR<br>
+19. DHANUSH GOWDA<br>
+20. GAGAN DEEP S<br>
+21. GHANASHYAM PRASHANT POOJARI<br>
+22. GORAKSHANATH SURESH GOWDA<br>
+23. GURURAJ PATIL<br>
+24. HARSHITH K R<br>
+25. HEMANTH C R<br>
+26. HEMANTH P C<br>
+27. HRISHIKESH V S<br>
+28. KUBERAGOUDA VIRUPAKSHAGOUDA RAMANAGOUDRA<br>
+29. LIKITH<br>
+30. MADAN H M<br>
+31. SHASHANK S<br>
+32. SHIVAKUMAR HULLIKERI<br>
+33. SIDDARAJU M R<br>
+34. SRAJAN SHAHINATH GOVEKAR<br>
+35. TANMAY S M<br>
+36. ULLAS GOWDA C M<br>
+37. VIJAY<br>
+38. CHARAN L<br>
+39. HEMANTHKUMAR<br>
+40. ABHILASH M<br>
+41. AKARSHA BALAGANUR<br>
+42. AMARESHA<br>
+43. ASHOK CHALIHA<br>
+44. B M NITHIN KUMAR<br>
+45. BHARATHA KUMARA<br>
+46. DARSHANKUMAR PRAVIN PATIL<br>
+47. DIVAKAR P N<br>
+48. GAGANDEEP METI<br>
+49. HANUMANTHA REDDY P R<br>
+50. HRUTHWIK R<br>
+51. MANI KUMAR G V<br>
+52. NANDA KISHORE J A<br>
+53. NITHINGOWDA A<br>
+54. PENTAPALLI AKASH<br>
+55. PRAMOD KUMAR REVADI<br>
+56. PRATEEK MUDHOLE<br>
+57. PRAVEEN BASAVARAJ TUMMARAGUDDI<br>
+58. PRUTHVI RAJ G<br>
+59. ROHITH YADAV R C<br>
+60. SAI MANOJ N R<br>
+61. SAMARTHA BHARGAV BHAT<br>
+62. SHIVANANDA ANTARAGANGI<br>
+63. UYYALA BHARATH SUBRAMANI<br>
+64. VIJAY TEJA S<br>
+65. VISHWANATH REDDY
+  `
+},
+{
+  keywords: ["12th class students", "class 12 students", "students of 12", "mission 55"],
+  reply: `
+📘 <strong>Class 12 – Student List:</strong><br><br>
+1. APPU M K<br>
+2. ADITYA SURESH NAIK<br>
+3. AMITH<br>
+4. ANKUSH V BHAT<br>
+5. B A AKASHA<br>
+6. BASAVARAJ<br>
+7. BHARAT VEERABHADRA NAIK<br>
+8. BHUVAN CHAND G<br>
+9. DARSHAN MADIVAL<br>
+10. DEEKSHITH GOWDA M R<br>
+11. DHEERAJ N<br>
+12. DILEEP K M<br>
+13. G M AJJAIAH<br>
+14. GANESHA M<br>
+15. GAURAV RAJAN D<br>
+16. GIREESHA K<br>
+17. GUDE SHANMUKHA SAI<br>
+18. HRUTHIK I K<br>
+19. JEEVAN K S<br>
+20. JEEVAN R<br>
+21. KARTHIK C<br>
+22. KIRAN KRISHNA NAIK<br>
+23. KIRAN M P<br>
+24. KOUSHIK REDDY<br>
+25. MADAN GOWDA B V<br>
+26. MAHIBOBASAB<br>
+27. MANAV SUBRAMANYAN GOUNDER<br>
+28. MANJUNATH AWARADI<br>
+29. NANDAN G S<br>
+30. NARENDRA BABU C N<br>
+31. PRAJWAL SANGANNA BAGEVADI<br>
+32. PRAKASH GANAPATI NAIK<br>
+33. PRAVEEN K<br>
+34. PRINCE RAJ<br>
+35. RAJAMAMMOD<br>
+36. ROHIT CHAWAN<br>
+37. SAI HARSHITH R<br>
+38. SAI KIRAN B G<br>
+39. SAI SUMANTH<br>
+40. SAMARTH BHASME<br>
+41. SANJU S<br>
+42. SHIVAKUMAR<br>
+43. SHIVAKUMAR REVADI<br>
+44. SHIVAPRASAD S<br>
+45. SHRAVANKUMAR PRAVIN PATIL<br>
+46. SHRINIVAS<br>
+47. SHRINIVAS PARASHURAM VADDAR<br>
+48. SIDDARAMA<br>
+49. SRIKANTH H M<br>
+50. SRINIVAS N<br>
+51. SUMANTH K S<br>
+52. SUNIL HEGARADDI<br>
+53. THANUSH NAYAK R<br>
+54. VINAYAK M B<br>
+55. YASHAVANTHKUMAR C
+  `
+},
+{
+  keywords: ["students statistics", "student count", "students strength 2025", "statistics 2025-26"],
+  reply: `
+📊 <strong>Students Statistics – Academic Year 2025–26</strong><br><br>
+<table border="1" cellpadding="4" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Sl. No.</th>
+      <th>Grade</th>
+      <th>No. of Students</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Grade 6th</td><td>16</td></tr>
+    <tr><td>2</td><td>Grade 7th</td><td>12</td></tr>
+    <tr><td>3</td><td>Grade 8th</td><td>11</td></tr>
+    <tr><td>4</td><td>Grade 9th A (Arts)</td><td>13</td></tr>
+    <tr><td>5</td><td>Grade 9th B (Science)</td><td>13</td></tr>
+    <tr><td>6</td><td>Grade 10th A (Arts)</td><td>26</td></tr>
+    <tr><td>7</td><td>Grade 10th B (Science)</td><td>21</td></tr>
+    <tr><td>8</td><td>Grade 11th (Arts)</td><td>65</td></tr>
+    <tr><td>9</td><td>Grade 12th (Arts)</td><td>55</td></tr>
+    <tr><td colspan="2"><strong>Total</strong></td><td><strong>232</strong></td></tr>
+  </tbody>
+</table>
+  `
+},
     { keywords: ["head", "principal", "staff", "leader"], reply: "👥 Heads: Sadguru (Founder), Sri Gaurav M. (Pradhanapalak), Sri Karthik (Upa Pradhanapalak), Sri Raju (OBE Principal), Sri Chethan (Secondary), Sri Harshavardhan (Sr. Secondary)." },
     { keywords: ["contact", "phone", "email"], reply: "📞 Email: gurukulam@ssslsg.org | 📞 +91 - 9731224548 / +91 - 8152968760" },
     { keywords: ["location", "map", "where"], reply: `📍 <strong>Sri Sathya Sai Sharadaniketanam, Mandya</strong>:<br><a href="https://maps.app.goo.gl/Fu45ZsH41VPSurFf9" target="_blank">Google Maps 🗺️</a>` },
@@ -823,29 +1135,8 @@ Together, these values shape a life of purity, purpose, and service to all.},
     { keywords: ["achievements", "awards"], reply: "🏆 Our students have achieved excellence in academics, sports like shuttle badminton 🏸 and kabaddi, and cultural competitions." },
     { keywords: ["events", "annual day", "functions"], reply: "📅 Annual Day, Veda competitions, Cultural shows, Parent Meets are regularly organized." },
     { keywords: ["value education", "spiritual", "character"], reply: "🕉️ Moral and value education is integrated daily with bhajans, prayers, and service activities." },
-    { keywords: ["digital learning", "smart class", "ai", "chatgpt"], reply: <p style="font-family: 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.7; color: #2b2b2b; background: #f0f8ff; padding: 15px 20px; border-left: 5px solid #1e90ff; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.08);">
-  💡 Our students engage in smart classrooms and modern computer labs, where learning is powered by technology. With hands-on access to tools like <strong>ChatGPT</strong>, <strong>Canva</strong>, and <strong>coding platforms</strong>, they explore digital creativity, critical thinking, and AI-based problem solving — preparing them for the future with confidence and skill.
-</p>
-{
-  keywords: ["sadguru", "madhusudhan sai", "5cs", "5ds", "3ws", "values", "teachings"],
-  reply: "🕉️ Sadguru Sri Madhusudhan Sai guides us through the 5 Cs (Calmness, Contentment, Compassion, Concentration, Confidence), 5 Ds (Dedication, Discipline, Determination, Discrimination, Devotion), and 3 Ws (Watch your Words, Actions, and Thoughts) — shaping a life of purpose, purity, and service."
-},
-<div style="padding: 20px; background-color: #f0f8ff; border-radius: 10px; width: 100%; max-width: 500px; margin: auto; font-family: Arial;">
-  <label for="classDropdown" style="font-size: 16px; font-weight: bold;">🎓 Select Class:</label>
-  <select id="classDropdown" style="padding: 8px; font-size: 14px; width: 100%; margin: 10px 0;">
-    <option value="">-- Choose --</option>
-    <option value="class_6">Class 6</option>
-    <option value="class_7">Class 7</option>
-    <option value="class_8">Class 8</option>
-    <option value="class_9">Class 9</option>
-    <option value="class_10">Class 10</option>
-    <option value="class_11">Class 11</option>
-    <option value="class_12">Class 12</option>
-  </select>
-
-  <ul id="studentList" style="list-style: none; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1);"></ul>
-</div>
-    { keywords: ["dress code", "uniform", "clothes"], reply: "👕 Students wear white shirt and pants with a scarf. Uniform is provided by the campus." },
+    { keywords: ["digital learning", "smart class", "ai", "chatgpt"], reply: "💡 Our students use smart classrooms, computer labs, and AI tools like ChatGPT to build digital skills." },
+    { keywords: ["dress code", "uniform", "clothes"], reply: "👕 Students wear white shirt and pants. Uniform is provided by the campus." },
     { keywords: ["food", "meals", "lunch", "dinner"], reply: "🍛 Yes, nutritious vegetarian food is served four times a day—breakfast, lunch, snacks, and dinner." },
     { keywords: ["join after 10", "after 10th", "after tenth"], reply: "🎓 Yes, admissions are open for Grade 11 under Humanities stream (PUC)." },
     { keywords: ["free", "no cost", "tuition fees"], reply: "💯 Yes, education including lodging, food, clothing, and medical care is completely free." },
@@ -878,6 +1169,7 @@ Together, these values shape a life of purity, purpose, and service to all.},
     { keywords: ["stem lab"], reply: "🔧 STEM Lab is on the Second Floor." },
     { keywords: ["sports room"], reply: "🏅 Sports Room is on the Second Floor." },
     { keywords: ["drama room"], reply: "🎭 Drama Room is on the Ground Floor." }
+  ];
 
   function toggleChat() {
     const chatWindow = document.getElementById('chatWindow');
@@ -901,7 +1193,7 @@ Together, these values shape a life of purity, purpose, and service to all.},
 
     for (const [name, dept] of Object.entries(teacherMap)) {
       if (msgLower.includes(name)) {
-        reply = `👨‍🏫 <strong>${name.toUpperCase()}</strong><br>📚 Department: ${dept}`;
+        reply = `👨‍🏫 <strong>${name.toUpperCase()}</strong><br>📚 INFO: ${dept}`;
         break;
       }
     }
@@ -929,90 +1221,34 @@ Together, these values shape a life of purity, purpose, and service to all.},
       sendMessage();
     }
   });
-const studentMap = {
-  class_6: ["Akhil Gowda K P", "Ashray Ananda H", "B Sai Mokshith"],
-  class_7: ["Chiranth Gowda", "Gagan M. S", "Manish B"],
-  class_8: ["Chetan K S", "Chiranth Gowda", "Diganth"],
-  class_9: ["Barath Ramachandra", "Gowtham", "Mahesh A"],
-  class_10: ["Akash H M", "Basavakiran A Patil", "Dawood Ibrahim I"],
-  class_11: ["ABHISHEK GOWDA", "CHINMAY S B", "GANESH GOPYANAIK"],
-  class_12: ["APPU M K", "ADITYA SURESH NAIK", "AMITH"]
-};
 
-// Create dropdown
-const dropdown = document.createElement("select");
-dropdown.id = "classDropdown";
-dropdown.style.padding = "10px";
-dropdown.style.marginBottom = "20px";
-dropdown.style.fontSize = "16px";
+  window.addEventListener("load", () => {
+    const chatBody = document.getElementById('chatBody');
+    const menuDiv = document.createElement('div');
+    menuDiv.className = 'menu-buttons';
+    menuDiv.innerHTML = `
+ <strong>📌 Quick Menu:</strong><br>
+<button onclick="autoAsk('founder')">Founder</button>
+<button onclick="autoAsk('routine')">Routine</button>
+<button onclick="autoAsk('facilities')">Facilities</button>
+<button onclick="autoAsk('admission')">Admission</button>
+<button onclick="autoAsk('contact')">Contact</button>
+<button onclick="autoAsk('sanchari mithra')">sanchari mithra</button>
+<button onclick="autoAsk('events')">Events</button>
+<button onclick="autoAsk('value education')">Values</button>
+<button onclick="autoAsk('students statistics')">students statistics</button>
+<button onclick="autoAsk('academic block')">Academic Block</button> <!-- ✅ NEW BUTTON -->
+<button onclick="autoAsk('acharya')">Acharya List</button> <!-- ✅ NEW BUTTON -->
+<hr>
+    `;
+    chatBody.prepend(menuDiv);
+  });
 
-// Add default option
-const defaultOption = document.createElement("option");
-defaultOption.text = "-- Select Class --";
-defaultOption.value = "";
-dropdown.appendChild(defaultOption);
 
-// Add class options
-Object.keys(studentMap).forEach(classKey => {
-  const option = document.createElement("option");
-  option.value = classKey;
-  option.text = classKey.replace("class_", "Class ");
-  dropdown.appendChild(option);
-});
-
-// Create student list container
-const listContainer = document.createElement("ul");
-listContainer.id = "studentList";
-listContainer.style.listStyle = "none";
-listContainer.style.background = "#fff";
-listContainer.style.padding = "20px";
-listContainer.style.borderRadius = "8px";
-listContainer.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
-listContainer.style.fontSize = "16px";
-
-// Append to body
-document.body.appendChild(dropdown);
-document.body.appendChild(listContainer);
-
-// Handle dropdown change
-dropdown.addEventListener("change", function () {
-  const selectedClass = dropdown.value;
-  listContainer.innerHTML = "";
-
-  if (studentMap[selectedClass]) {
-    studentMap[selectedClass].forEach(name => {
-      const li = document.createElement("li");
-      li.textContent = name;
-      li.style.padding = "5px 0";
-      listContainer.appendChild(li);
-    });
+  function autoAsk(keyword) {
+    document.getElementById("userInput").value = keyword;
+    sendMessage();
   }
-});
-<!-- 📌 SINGLE COMBINED QUICK MENU BLOCK -->
-<script>
-window.addEventListener("load", () => {
-  const chatBody = document.getElementById('chatBody');
-  const menuDiv = document.createElement('div');
-  menuDiv.className = 'menu-buttons';
-
-  menuDiv.innerHTML = `
-    <strong>📌 Quick Menu:</strong><br><br>
-    <button onclick="autoAsk('founder')">Founder</button>
-    <button onclick="autoAsk('routine')">Routine</button>
-    <button onclick="autoAsk('facilities')">Facilities</button>
-    <button onclick="autoAsk('admission')">Admission</button>
-    <button onclick="autoAsk('contact')">Contact</button>
-    <button onclick="autoAsk('sanchari mithra')">Sanchari Mithra</button>
-    <button onclick="autoAsk('events')">Events</button>
-    <button onclick="autoAsk('digital learning')">Digital</button>
-    <button onclick="autoAsk('academic block')">Academic Block</button>
-    <button onclick="autoAsk('acharya')">Acharya List</button>
-    <hr>
-  `;
-
-  chatBody.prepend(menuDiv);
-});
 </script>
-</style>
 </body>
 </html>
